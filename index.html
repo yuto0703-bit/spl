@@ -5,158 +5,171 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="周南公立大学のポーカーサークル SPL（SHUNAN POKER LEAGUE）の公式サイト。">
 <link rel="icon" href="logo.webp">
-<title>SHUNAN POKER LEAGUE</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<title>SPL | SHUNAN POKER LEAGUE</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
-/* Layout: 明るい地に白い角丸パネルを縦に積む。赤は見出しの印とボタンだけ。見せ場はトランプで見る役一覧と「どっちが強い？」クイズ。 */
+/* Layout: 黒地のストリート・ポップ。傾いた見出しラベル、流れる帯、ステッカー風カードと固い影。黄色は差し色で、帯とステッカーだけに使う。 */
 :root{
-  --bg:#f5f2f2; --surface:#ffffff; --ink:#1d1517; --mute:#675b5e; --line:#e7dfe0;
-  --red:#e3121f; --red-ink:#c40f1b; --on-red:#ffffff; --soft:#fdeced;
+  --ink:#0d090a; --panel:#1b1315; --paper:#fff8f2; --mute:#cfc3c5;
+  --red:#e3121f; --red-l:#ff6471; --yellow:#ffe14a; --black:#0d090a;
   --pc:#ffffff; --pc-ink:#1d1517; --pc-red:#d3101c; --pc-line:#d9cfd1;
-  --ok:#0b7a43; --ok-bg:#e3f5ea;
-  --f-head:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Noto Sans JP",sans-serif;
-  --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Noto Sans JP",sans-serif;
-  --shadow:0 2px 0 rgba(29,21,23,.06),0 10px 26px rgba(29,21,23,.07);
+  --ok:#57e39c; --ok-edge:#1faa64;
+  --f-d:"Dela Gothic One","Hiragino Kaku Gothic StdN","Noto Sans JP",sans-serif;
+  --f-b:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#130e0f; --surface:#1f1719; --ink:#f7f2f2; --mute:#b9abae; --line:#372a2d;
-  --red:#e3121f; --red-ink:#ff6570; --soft:#33161a; --ok:#6fdca0; --ok-bg:#123222;
-  --shadow:0 2px 0 rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.35); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#130e0f; --surface:#1f1719; --ink:#f7f2f2; --mute:#b9abae; --line:#372a2d;
-  --red:#e3121f; --red-ink:#ff6570; --soft:#33161a; --ok:#6fdca0; --ok-bg:#123222;
-  --shadow:0 2px 0 rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.35); color-scheme:dark}
-
 *{box-sizing:border-box;margin:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-weight:500;font-size:16px;line-height:1.8}
-.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3,.btn,.tag,.num{font-family:var(--f-head)}
+body{background:radial-gradient(circle,rgba(255,248,242,.075) 1.5px,transparent 2px) 0 0/18px 18px,var(--ink);background-color:var(--ink);color:var(--paper);font-family:var(--f-b);font-weight:500;font-size:16px;line-height:1.8}
+.page{overflow-x:clip}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
 a{color:inherit}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--red-ink);outline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 
-/* top bar */
+/* top */
 .top .wrap{padding-block:14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
-.brand img{width:44px;height:44px;border-radius:12px;display:block;flex:none}
-.brand b{font-family:var(--f-head);font-weight:900;font-size:20px;line-height:1.1;letter-spacing:.04em}
+.brand img{width:44px;height:44px;border-radius:10px;border:2px solid var(--paper);display:block;flex:none}
+.brand b{font-family:var(--f-d);font-size:20px;line-height:1.1;letter-spacing:.04em}
 .brand small{display:block;font-size:10px;font-weight:700;color:var(--mute);letter-spacing:.12em}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 30px;border-radius:999px;border:0;background:var(--red);color:var(--on-red);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;box-shadow:0 4px 0 var(--red-ink)}
-.btn.ghost{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
-.btn.sm{min-height:44px;padding:0 20px;font-size:14px;box-shadow:none}
-.btn.off{background:transparent;color:var(--mute);box-shadow:inset 0 0 0 2px var(--line);cursor:default}
-.btn.white{background:#ffffff;color:#c40f1b;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 26px;border-radius:14px;border:3px solid var(--paper);background:var(--red);color:#ffffff;font-family:var(--f-b);font-weight:900;font-size:16px;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--paper)}
+.btn.alt{background:var(--yellow);color:var(--black);border-color:var(--black);box-shadow:5px 5px 0 var(--paper)}
+.btn.sm{min-height:44px;padding:0 18px;font-size:14px;box-shadow:3px 3px 0 var(--paper)}
+.btn.white{background:#ffffff;color:var(--black);border-color:var(--black);box-shadow:6px 6px 0 var(--black)}
 @media (prefers-reduced-motion:no-preference){
-  .btn{transition:transform .12s}.btn:not(.off):hover{transform:translateY(-2px)}.btn:not(.off):active{transform:translateY(2px)}
-  .feat,.pick{transition:transform .15s}.feat:hover{transform:translateY(-3px)}
+  .btn,.tile{transition:transform .12s}
+  .btn:hover,.tile:hover{transform:translate(-2px,-2px)}
+  .btn:active,.tile:active{transform:translate(2px,2px)}
 }
 
-/* panels */
-.panel{background:var(--surface);border-radius:28px;box-shadow:var(--shadow)}
-main{display:flex;flex-direction:column;gap:20px;padding-bottom:20px}
-
 /* hero */
-.hero{position:relative;overflow:hidden;padding:36px 22px 40px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
-.hero .suit{position:absolute;font-size:150px;line-height:1;color:var(--soft);pointer-events:none;user-select:none}
-.hero .s1{left:-22px;top:-30px;transform:rotate(-14deg)}
-.hero .s2{right:-18px;top:36px;transform:rotate(12deg)}
-.hero .s3{left:8%;bottom:-54px;transform:rotate(10deg)}
-.hero .s4{right:6%;bottom:-50px;transform:rotate(-10deg)}
-.hero>*:not(.suit){position:relative}
-.icon{width:132px;height:132px;border-radius:30px;display:block;box-shadow:0 6px 0 rgba(29,21,23,.14),0 16px 30px rgba(29,21,23,.18)}
-.tag{display:inline-block;background:var(--soft);color:var(--red-ink);font-weight:800;font-size:13px;border-radius:999px;padding:3px 14px;letter-spacing:.06em}
-h1{font-weight:900;font-size:clamp(30px,8.2vw,54px);line-height:1.3;letter-spacing:.01em;text-wrap:balance}
-h1 em{font-style:normal;color:var(--red-ink)}
+.hero .wrap{position:relative;padding-block:26px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.stage{position:relative;width:min(100%,360px);height:210px;align-self:center}
+.blob{position:absolute;left:8%;top:4px;width:84%;height:200px;background:var(--red);border-radius:62% 38% 55% 45% / 48% 60% 40% 52%;transform:rotate(-8deg)}
+.icon{position:absolute;left:50%;top:18px;width:164px;height:164px;margin-left:-82px;border-radius:26px;border:4px solid var(--paper);box-shadow:8px 8px 0 var(--black);transform:rotate(-5deg);display:block}
+.badge{position:absolute;right:0;top:0;width:96px;height:96px;border-radius:50%;background:var(--yellow);color:var(--black);border:3px solid var(--black);display:grid;place-content:center;text-align:center;font-family:var(--f-d);font-size:15px;line-height:1.25;transform:rotate(12deg)}
+.suitfx{position:absolute;font-size:54px;line-height:1;color:var(--paper)}
+.suitfx.a{left:0;bottom:6px;transform:rotate(-18deg)}
+.suitfx.b{right:10px;bottom:-4px;color:var(--yellow);transform:rotate(14deg)}
+.kicker{font-weight:900;font-size:13px;letter-spacing:.1em;background:var(--paper);color:var(--black);padding:1px 12px;transform:rotate(-2deg)}
+h1{font-family:var(--f-d);font-weight:400;font-size:clamp(34px,10.4vw,76px);line-height:1.28;letter-spacing:.01em}
+h1 em{font-style:normal;display:inline-block;background:var(--red);color:#ffffff;padding:0 .14em;transform:rotate(-2.5deg);box-shadow:6px 6px 0 var(--paper)}
 .lead{color:var(--mute);max-width:32em;font-size:15.5px}
-.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.row{display:flex;flex-wrap:wrap;gap:16px}
+
+/* ticker */
+.ticker{overflow:hidden;white-space:nowrap;font-family:var(--f-d);font-size:20px;line-height:1;padding:12px 0;background:var(--red);color:#ffffff;transform:rotate(-2deg) scale(1.04);border-block:3px solid var(--black)}
+.ticker.y{background:var(--yellow);color:var(--black);transform:rotate(2deg) scale(1.04)}
+.ticker div{display:inline-block;padding-right:0}
+.ticker span{display:inline-block;padding-right:28px}
+@media (prefers-reduced-motion:no-preference){
+  .ticker div{animation:tick 26s linear infinite}
+  @keyframes tick{to{transform:translateX(-50%)}}
+}
+
+/* jump tiles */
+.jump .wrap{padding-block:44px 8px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tile{position:relative;overflow:hidden;min-height:112px;border-radius:18px;border:3px solid var(--black);padding:14px 16px;text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;font-family:var(--f-d);font-size:clamp(17px,4.6vw,24px);line-height:1.3;box-shadow:6px 6px 0 var(--paper);background:var(--paper);color:var(--black)}
+.tile small{font-family:var(--f-b);font-weight:900;font-size:11px;letter-spacing:.14em}
+.tile i{position:absolute;right:-6px;top:-18px;font-style:normal;font-size:92px;line-height:1;opacity:.18;transform:rotate(14deg)}
+.tile.r{background:var(--red);color:#ffffff}
+.tile.y{background:var(--yellow)}
+.tile.k{background:var(--panel);color:var(--paper);border-color:var(--paper);box-shadow:6px 6px 0 var(--red)}
+@media (min-width:820px){.jump .wrap{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* sections */
-.sec{padding:34px 22px 36px;display:flex;flex-direction:column;gap:18px}
-h2{font-weight:900;font-size:clamp(22px,5.6vw,30px);line-height:1.4;text-wrap:balance;display:flex;align-items:center;gap:10px}
-h2::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--red);flex:none}
+.sec .wrap{padding-block:52px 12px;display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.hd{font-family:var(--f-d);font-weight:400;font-size:clamp(22px,6vw,34px);line-height:1.35;background:var(--paper);color:var(--black);padding:4px 16px;transform:rotate(-2deg);box-shadow:6px 6px 0 var(--red);text-wrap:balance}
 .sub{color:var(--mute);max-width:36em;font-size:15px}
+.full{align-self:stretch}
 
 /* features */
-.feats{display:grid;grid-template-columns:1fr;gap:10px}
-.feat{display:grid;grid-template-columns:56px 1fr;gap:4px 14px;align-items:center;background:var(--bg);border-radius:20px;padding:16px;min-width:0}
-.ic{width:56px;height:56px;border-radius:50%;background:var(--red);color:var(--on-red);display:grid;place-items:center;grid-row:span 2}
-.ic.k{background:var(--ink);color:var(--surface)}
-.ic svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.feat h3{font-weight:800;font-size:16.5px;line-height:1.45;align-self:end}
-.feat p{font-size:13.5px;line-height:1.65;color:var(--mute);align-self:start}
+.feats{display:grid;grid-template-columns:1fr;gap:16px;align-self:stretch}
+.feat{display:grid;grid-template-columns:56px 1fr;gap:2px 14px;align-items:center;background:var(--paper);color:var(--black);border:3px solid var(--black);border-radius:18px;padding:14px 16px;box-shadow:6px 6px 0 var(--red);min-width:0}
+.feat:nth-child(odd){transform:rotate(-1deg)}
+.feat:nth-child(even){transform:rotate(1deg);box-shadow:6px 6px 0 var(--yellow)}
+.ic{width:56px;height:56px;border-radius:50%;background:var(--black);color:var(--paper);display:grid;place-items:center;grid-row:span 2}
+.feat:nth-child(even) .ic{background:var(--red)}
+.ic svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{font-family:var(--f-d);font-weight:400;font-size:17px;line-height:1.4;align-self:end}
+.feat p{font-size:13.5px;line-height:1.6;font-weight:700;color:#4b3f41;align-self:start}
 @media (min-width:820px){
   .feats{grid-template-columns:repeat(5,minmax(0,1fr))}
-  .feat{grid-template-columns:1fr;justify-items:center;text-align:center;gap:10px;padding:22px 12px;align-content:start}
+  .feat{grid-template-columns:1fr;justify-items:center;text-align:center;gap:10px;padding:20px 10px;align-content:start}
   .ic{grid-row:auto}
 }
 
-/* trust */
-.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
-.trust div{border:2px solid var(--line);border-radius:20px;padding:18px;min-width:0}
-.trust b{font-family:var(--f-head);font-weight:800;font-size:17px;display:block;line-height:1.5}
-.trust p{font-size:14px;color:var(--mute);line-height:1.7;margin-top:4px}
-.trust .big{border-color:var(--red);background:var(--soft)}
-.trust .big b{color:var(--red-ink);font-size:20px}
+/* pledge */
+.pledge{background:var(--yellow);color:var(--black);margin-top:56px;border-block:3px solid var(--black)}
+.pledge .wrap{padding-block:34px;display:flex;flex-direction:column;gap:14px}
+.pledge h2{font-family:var(--f-d);font-weight:400;font-size:clamp(26px,7.6vw,48px);line-height:1.3;text-wrap:balance}
+.pledge ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.pledge li{background:var(--black);color:var(--paper);border-radius:12px;padding:10px 14px;font-weight:700;font-size:14.5px;line-height:1.6}
 
 /* playing cards */
 .cards{display:flex;gap:5px}
-.pcard{width:42px;height:58px;border-radius:7px;background:var(--pc);color:var(--pc-ink);border:1.5px solid var(--pc-line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--f-head);font-weight:900;font-size:17px;line-height:1.05;flex:none}
+.pcard{width:42px;height:58px;border-radius:7px;background:var(--pc);color:var(--pc-ink);border:1.5px solid var(--pc-line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--f-b);font-weight:900;font-size:17px;line-height:1.05;flex:none}
 .pcard i{font-style:normal;font-size:17px}
 .pcard.r{color:var(--pc-red)}
-.pcard.dim{opacity:.38}
+.pcard.dim{opacity:.36}
 
 /* quiz */
-.quiz{background:var(--bg);border-radius:24px;padding:20px 16px;display:flex;flex-direction:column;gap:12px;align-items:center}
-.quiz h3{font-weight:900;font-size:19px}
-.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(264px,1fr));gap:10px;width:100%}
-.pick{background:var(--surface);border:3px solid var(--line);border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--f-head);font-weight:800;font-size:15px;color:var(--ink);cursor:pointer;min-width:0}
+.quiz{align-self:stretch;background:var(--panel);border:3px solid var(--paper);border-radius:20px;box-shadow:6px 6px 0 var(--red);padding:20px 14px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(256px,1fr));gap:12px;width:100%}
+.pick{background:var(--paper);border:4px solid var(--black);border-radius:16px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--f-b);font-weight:900;font-size:15px;color:var(--black);cursor:pointer;min-width:0}
 .pick .nm{min-height:1.6em}
-.pick.right{border-color:var(--ok);background:var(--ok-bg)}
-.pick.wrong{border-color:var(--red-ink)}
-.pick:disabled{cursor:default;color:var(--ink)}
-.result{font-family:var(--f-head);font-weight:800;min-height:1.8em;text-align:center}
-.result.good{color:var(--ok)}.result.bad{color:var(--red-ink)}
+.pick.right{border-color:var(--ok-edge);background:#e2f8ec}
+.pick.wrong{border-color:var(--red)}
+.pick:disabled{cursor:default;color:var(--black)}
+.result{font-weight:900;min-height:1.8em;text-align:center}
+.result.good{color:var(--ok)}.result.bad{color:var(--red-l)}
 .score{font-size:13px;color:var(--mute);font-weight:700}
+.h3{font-family:var(--f-d);font-weight:400;font-size:18px}
 
-/* ranking list */
-.ranks{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 20px}
-.ranks li{display:grid;grid-template-columns:34px 1fr;gap:2px 10px;align-items:center;padding:10px 0;border-bottom:2px dotted var(--line);min-width:0}
-.num{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--surface);display:grid;place-items:center;font-weight:900;font-size:15px;grid-row:span 2}
-.ranks li:first-child .num{background:var(--red);color:var(--on-red)}
-.ranks .nm{font-family:var(--f-head);font-weight:800;font-size:15.5px;line-height:1.4}
-.ranks .nm small{display:block;font-family:var(--f-body);font-weight:500;font-size:12.5px;color:var(--mute)}
+/* ranking */
+.ranks{align-self:stretch;list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:6px 22px}
+.ranks li{display:grid;grid-template-columns:36px 1fr;gap:2px 10px;align-items:center;padding:10px 0;border-bottom:2px dashed rgba(255,248,242,.28);min-width:0}
+.num{width:36px;height:36px;border-radius:50%;background:var(--paper);color:var(--black);display:grid;place-items:center;font-family:var(--f-d);font-size:15px;grid-row:span 2}
+.ranks li:first-child .num{background:var(--yellow)}
+.ranks .nm{font-weight:900;font-size:15.5px;line-height:1.4}
+.ranks .nm small{display:block;font-weight:500;font-size:12.5px;color:var(--mute)}
 .ranks .cards{grid-column:2;margin-top:4px}
 
 /* app */
-.app{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:center}
-.coin{width:150px;height:150px;border-radius:50%;margin:0 auto;background:repeating-conic-gradient(#ffffff 0 15deg,var(--red) 15deg 45deg);display:grid;place-items:center;box-shadow:0 6px 0 rgba(29,21,23,.15)}
-.coin div{width:106px;height:106px;border-radius:50%;background:var(--red);border:3px dashed #ffffff;color:#ffffff;display:grid;place-content:center;text-align:center;font-family:var(--f-head);font-weight:900;font-size:34px;line-height:1}
-.coin small{display:block;font-size:10px;letter-spacing:.14em;margin-top:4px}
+.app{align-self:stretch;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;align-items:center;background:var(--panel);border:3px solid var(--paper);border-radius:20px;box-shadow:6px 6px 0 var(--yellow);padding:24px 18px}
+.coin{width:150px;height:150px;border-radius:50%;margin:0 auto;background:repeating-conic-gradient(#ffffff 0 15deg,var(--red) 15deg 45deg);display:grid;place-items:center;transform:rotate(-8deg);box-shadow:6px 6px 0 var(--black)}
+.coin div{width:106px;height:106px;border-radius:50%;background:var(--red);border:3px dashed #ffffff;color:#ffffff;display:grid;place-content:center;text-align:center;font-family:var(--f-d);font-size:32px;line-height:1}
+.coin small{display:block;font-family:var(--f-b);font-weight:900;font-size:10px;letter-spacing:.14em;margin-top:5px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0}
-.chips li{font-family:var(--f-head);font-weight:800;font-size:12.5px;letter-spacing:.06em;border:2px solid var(--ink);border-radius:999px;padding:2px 12px}
+.chips li{font-weight:900;font-size:12.5px;letter-spacing:.06em;background:var(--paper);color:var(--black);border-radius:6px;padding:2px 10px}
+.chips li:nth-child(odd){transform:rotate(-2deg)}
+.chips li:nth-child(even){transform:rotate(2deg);background:var(--yellow)}
 
 /* faq */
-details{border:2px solid var(--line);border-radius:18px;padding:0 18px}
-details+details{margin-top:10px}
-summary{cursor:pointer;list-style:none;font-family:var(--f-head);font-weight:800;padding:15px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq{align-self:stretch;display:flex;flex-direction:column;gap:12px}
+details{background:var(--panel);border:3px solid var(--paper);border-radius:14px;padding:0 16px}
+summary{cursor:pointer;list-style:none;font-weight:900;padding:14px 0;display:flex;align-items:center;gap:10px}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"Q";color:var(--red-ink);font-weight:900;margin-right:2px;flex:none}
+summary::before{content:"Q";font-family:var(--f-d);color:var(--black);background:var(--yellow);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;flex:none}
 summary span{flex:1}
-summary::after{content:"＋";color:var(--red-ink);font-weight:900;flex:none}
+summary::after{content:"＋";color:var(--yellow);font-weight:900;flex:none}
 details[open] summary::after{content:"－"}
-details p{padding:0 0 16px 1.4em;color:var(--mute);font-size:15px}
+details p{padding:0 0 16px 38px;color:var(--mute);font-size:15px}
 
 /* join */
-.join{background:var(--red);color:#ffffff;border-radius:28px;padding:40px 22px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
-.join h2{color:#ffffff;justify-content:center}
-.join h2::before{display:none}
-.join p{font-size:15px}
+.join{background:var(--red);color:#ffffff;margin-top:64px;border-top:3px solid var(--black)}
+.join .wrap{padding-block:48px 52px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.join h2{font-family:var(--f-d);font-weight:400;font-size:clamp(28px,8.4vw,56px);line-height:1.3;text-wrap:balance}
+.join p{font-weight:700}
+footer{background:var(--black)}
 footer .wrap{padding-block:22px 30px;text-align:center;color:var(--mute);font-size:12px;font-weight:700;letter-spacing:.08em}
+.gap{height:56px}
 </style>
 </head>
 <body>
 
+<div class="page">
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top-of-page">
@@ -167,89 +180,120 @@ footer .wrap{padding-block:22px 30px;text-align:center;color:var(--mute);font-si
   </div>
 </header>
 
-<main class="wrap" id="top-of-page">
+<main id="top-of-page">
 
-  <section class="panel hero">
-    <span class="suit s1" aria-hidden="true">♠</span><span class="suit s2" aria-hidden="true">♥</span><span class="suit s3" aria-hidden="true">♦</span><span class="suit s4" aria-hidden="true">♣</span>
-    <img class="icon" src="logo.webp" alt="SPL SHUNAN POKER LEAGUE のロゴ" width="132" height="132">
-    <span class="tag">周南公立大学 ポーカーサークル</span>
-    <h1>読み合いの先に、<br><em>つながり</em>がある。</h1>
-    <p class="lead">SPL（SHUNAN POKER LEAGUE）は、テキサスホールデムを通じて、挑戦する楽しさと、人とつながる価値を広げるサークルです。</p>
-    <div class="row">
-      <a class="btn" href="#about"><span>SPLを知る</span></a>
-      <a class="btn ghost" href="#quiz"><span>役クイズであそぶ</span></a>
-    </div>
-  </section>
-
-  <section class="panel sec" id="about">
-    <h2>SPLってどんなサークル？</h2>
-    <div class="feats">
-      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.6"/><path d="M17.5 14.2c2.4.4 4 2.3 4 5.3"/></svg></span><h3>初心者も経験者も歓迎</h3><p>ルールを知らなくても大丈夫。経験者が隣で教えます。</p></div>
-      <div class="feat"><span class="ic k"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4"/><path d="M17 6h3a3 3 0 0 1-3 4"/><path d="M12 14v4"/><path d="M8 20h8"/></svg></span><h3>大会への出場を目指す</h3><p>学内外や他県の大会、公式大会にも挑戦します。</p></div>
-      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="12" r="5.5"/><circle cx="15.5" cy="12" r="5.5"/></svg></span><h3>他大学や地域と交流</h3><p>学校の外にも仲間が広がる場をつくります。</p></div>
-      <div class="feat"><span class="ic k"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 7.5l3 4 3-4"/><path d="M12 11.5v5"/><path d="M9.5 12.5h5"/><path d="M9.5 15h5"/><path d="M5.6 5.6l12.8 12.8"/></svg></span><h3>お金を賭けない</h3><p>金銭は一切賭けません。頭脳ゲームとして楽しみます。</p></div>
-      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M8 14h2"/><path d="M14 14h2"/><path d="M8 17h2"/></svg></span><h3>独自の大会を開催</h3><p>SPL CUPをはじめ、SPLならではの大会を開きます。</p></div>
-    </div>
-  </section>
-
-  <section class="panel sec">
-    <h2>安心して参加できます</h2>
-    <div class="trust">
-      <div class="big"><b>SPLは、お金を賭けません。</b><p>チップは、ゲームの中だけで使う得点です。</p></div>
-      <div><b>はじめてでも大丈夫</b><p>ルールの説明から始めます。遊びながら覚えられます。</p></div>
-      <div><b>勝ち負けだけじゃない</b><p>参加や交流そのものを大切にします。</p></div>
-    </div>
-  </section>
-
-  <section class="panel sec" id="quiz">
-    <h2>どっちが強い？ 役クイズ</h2>
-    <p class="sub">テキサスホールデムは、手札2枚と場の5枚から、いちばん強い5枚の組み合わせを作るゲームです。強いと思うほうをタップしてください。</p>
-    <div class="quiz">
-      <div class="picks">
-        <button class="pick" id="pick-a" type="button"></button>
-        <button class="pick" id="pick-b" type="button"></button>
+  <section class="hero">
+    <div class="wrap">
+      <div class="stage">
+        <div class="blob" aria-hidden="true"></div>
+        <span class="suitfx a" aria-hidden="true">♠</span>
+        <span class="suitfx b" aria-hidden="true">♦</span>
+        <img class="icon" src="logo.webp" alt="SPL SHUNAN POKER LEAGUE のロゴ" width="164" height="164">
+        <span class="badge">初心者<br>歓迎！</span>
       </div>
-      <p class="result" id="quiz-result" role="status" aria-live="polite"></p>
-      <button class="btn sm" id="quiz-next" type="button" hidden><span>次の問題</span></button>
-      <p class="score" id="quiz-score">連続正解 0</p>
-    </div>
-    <h3 style="font-family:var(--f-head);font-weight:900;font-size:18px;margin-top:8px">役の強さ一覧（上ほど強い）</h3>
-    <ol class="ranks" id="rank-list"></ol>
-    <p class="sub">うすく表示したカードは、役に関係しないカードです。</p>
-  </section>
-
-  <section class="panel sec">
-    <h2>SPL公式アプリを開発中</h2>
-    <div class="app">
-      <div class="coin" aria-hidden="true"><div>SP<small>SPL COIN</small></div></div>
-      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
-        <p>イベントに参加するたびに、ポイント「SPL COIN」や称号がたまるアプリを準備しています。SPL COINは現金とは交換できません。</p>
-        <ul class="chips" aria-label="称号の例">
-          <li>FIRST STEP</li><li>REGULAR</li><li>VETERAN</li><li>CHALLENGER</li><li>COMMUNITY</li>
-        </ul>
+      <p class="kicker">周南公立大学 ポーカーサークル</p>
+      <h1>読み合いの先に、<br><em>つながり</em>がある。</h1>
+      <p class="lead">SPL（SHUNAN POKER LEAGUE）は、テキサスホールデムを通じて、挑戦する楽しさと、人とつながる価値を広げるサークルです。</p>
+      <div class="row">
+        <a class="btn" href="#about"><span>SPLを知る</span></a>
+        <a class="btn alt" href="#quiz"><span>役クイズであそぶ</span></a>
       </div>
     </div>
   </section>
 
-  <section class="panel sec">
-    <h2>よくある質問</h2>
-    <div>
-      <details><summary><span>ポーカーをやったことがありません。</span></summary><p>大歓迎です。ルールの説明から始めるので、何も知らない状態で来てください。</p></details>
-      <details><summary><span>お金はかかりますか？賭けますか？</span></summary><p>お金を賭けることは一切ありません。チップやポイントは得点として使い、現金とは交換できません。</p></details>
-      <details><summary><span>ほかの大学の学生や、学生以外でも参加できますか？</span></summary><p>SPLは、他大学や地域の方との交流を目指しています。参加できるイベントはInstagramでお知らせします。</p></details>
-      <details><summary><span>どうやって参加すればいいですか？</span></summary><p>Instagramの公式アカウントをフォローして、活動のお知らせを確認してください。</p></details>
+  <div class="ticker" aria-hidden="true"><div><span>SHUNAN POKER LEAGUE</span><span>♠</span><span>BEYOND THE GAME</span><span>♥</span><span>TEXAS HOLD'EM</span><span>♦</span><span>SPL CUP</span><span>♣</span><span>SHUNAN POKER LEAGUE</span><span>♠</span><span>BEYOND THE GAME</span><span>♥</span><span>TEXAS HOLD'EM</span><span>♦</span><span>SPL CUP</span><span>♣</span><span>SHUNAN POKER LEAGUE</span><span>♠</span><span>BEYOND THE GAME</span><span>♥</span><span>TEXAS HOLD'EM</span><span>♦</span><span>SPL CUP</span><span>♣</span><span>SHUNAN POKER LEAGUE</span><span>♠</span><span>BEYOND THE GAME</span><span>♥</span><span>TEXAS HOLD'EM</span><span>♦</span><span>SPL CUP</span><span>♣</span></div></div>
+
+  <nav class="jump" aria-label="ページ内メニュー">
+    <div class="wrap">
+      <a class="tile" href="#about"><i aria-hidden="true">♠</i><small>ABOUT</small>SPLって？</a>
+      <a class="tile r" href="#quiz"><i aria-hidden="true">♥</i><small>QUIZ</small>役クイズ</a>
+      <a class="tile y" href="#app"><i aria-hidden="true">♦</i><small>APP</small>公式アプリ</a>
+      <a class="tile k" href="#join"><i aria-hidden="true">♣</i><small>JOIN</small>参加する</a>
+    </div>
+  </nav>
+
+  <section class="sec" id="about">
+    <div class="wrap">
+      <h2 class="hd">SPLってどんなサークル？</h2>
+      <div class="feats">
+        <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.6"/><path d="M17.5 14.2c2.4.4 4 2.3 4 5.3"/></svg></span><h3>初心者も経験者も歓迎</h3><p>ルールを知らなくても大丈夫。経験者が隣で教えます。</p></div>
+        <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4"/><path d="M17 6h3a3 3 0 0 1-3 4"/><path d="M12 14v4"/><path d="M8 20h8"/></svg></span><h3>大会への出場を目指す</h3><p>学内外や他県の大会、公式大会にも挑戦します。</p></div>
+        <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="12" r="5.5"/><circle cx="15.5" cy="12" r="5.5"/></svg></span><h3>他大学や地域と交流</h3><p>学校の外にも仲間が広がる場をつくります。</p></div>
+        <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 7.5l3 4 3-4"/><path d="M12 11.5v5"/><path d="M9.5 12.5h5"/><path d="M9.5 15h5"/><path d="M5.6 5.6l12.8 12.8"/></svg></span><h3>お金を賭けない</h3><p>金銭は一切賭けません。頭脳ゲームとして楽しみます。</p></div>
+        <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M8 14h2"/><path d="M14 14h2"/><path d="M8 17h2"/></svg></span><h3>独自の大会を開催</h3><p>SPL CUPをはじめ、SPLならではの大会を開きます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pledge">
+    <div class="wrap">
+      <h2>SPLは、お金を賭けません。</h2>
+      <ul>
+        <li>チップは、ゲームの中だけで使う得点です。</li>
+        <li>はじめてでも大丈夫。ルールの説明から始めます。</li>
+        <li>勝ち負けだけでなく、参加や交流を大切にします。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="quiz">
+    <div class="wrap">
+      <h2 class="hd">どっちが強い？ 役クイズ</h2>
+      <p class="sub">テキサスホールデムは、手札2枚と場の5枚から、いちばん強い5枚の組み合わせを作るゲームです。強いと思うほうをタップしてください。</p>
+      <div class="quiz">
+        <div class="picks">
+          <button class="pick" id="pick-a" type="button"></button>
+          <button class="pick" id="pick-b" type="button"></button>
+        </div>
+        <p class="result" id="quiz-result" role="status" aria-live="polite"></p>
+        <button class="btn sm" id="quiz-next" type="button" hidden><span>次の問題</span></button>
+        <p class="score" id="quiz-score">連続正解 0</p>
+      </div>
+      <h3 class="h3">役の強さ一覧（上ほど強い）</h3>
+      <ol class="ranks" id="rank-list"></ol>
+      <p class="sub">うすく表示したカードは、役に関係しないカードです。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="app">
+    <div class="wrap">
+      <h2 class="hd">SPL公式アプリを開発中</h2>
+      <div class="app">
+        <div class="coin" aria-hidden="true"><div>SP<small>SPL COIN</small></div></div>
+        <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+          <p>イベントに参加するたびに、ポイント「SPL COIN」や称号がたまるアプリを準備しています。SPL COINは現金とは交換できません。</p>
+          <ul class="chips" aria-label="称号の例">
+            <li>FIRST STEP</li><li>REGULAR</li><li>VETERAN</li><li>CHALLENGER</li><li>COMMUNITY</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="hd">よくある質問</h2>
+      <div class="faq">
+        <details><summary><span>ポーカーをやったことがありません。</span></summary><p>大歓迎です。ルールの説明から始めるので、何も知らない状態で来てください。</p></details>
+        <details><summary><span>お金はかかりますか？賭けますか？</span></summary><p>お金を賭けることは一切ありません。チップやポイントは得点として使い、現金とは交換できません。</p></details>
+        <details><summary><span>ほかの大学の学生や、学生以外でも参加できますか？</span></summary><p>SPLは、他大学や地域の方との交流を目指しています。参加できるイベントはInstagramでお知らせします。</p></details>
+        <details><summary><span>どうやって参加すればいいですか？</span></summary><p>Instagramの公式アカウントをフォローして、活動のお知らせを確認してください。</p></details>
+      </div>
     </div>
   </section>
 
   <section class="join" id="join">
-    <h2>さあ、はじめよう。SPLと。</h2>
-    <p>活動のお知らせはInstagramで発信します。<br><b>@spl_poker</b></p>
-    <a class="btn white ig" id="ig-join" href="#join"><span>Instagramをフォローする</span></a>
+    <div class="wrap">
+      <h2>さあ、はじめよう。<br>SPLと。</h2>
+      <p>活動のお知らせはInstagramで発信します。<br>@spl_poker</p>
+      <a class="btn white ig" id="ig-join" href="#join"><span>Instagramをフォローする</span></a>
+    </div>
   </section>
 
 </main>
 
 <footer><div class="wrap"><p>SPL — SHUNAN POKER LEAGUE</p><p>周南公立大学 ポーカーサークル</p></div></footer>
+</div>
 
 <script>
 // Instagramの公式アカウントのURLをここに入れます（例: "https://www.instagram.com/アカウント名/"）
