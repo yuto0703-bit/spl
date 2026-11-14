@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="周南公立大学のポーカーサークル SPL（SHUNAN POKER LEAGUE）の公式サイト。">
+<link rel="icon" href="logo.webp">
+<title>SHUNAN POKER LEAGUE</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: 明るい地に白い角丸パネルを縦に積む。赤は見出しの印とボタンだけ。見せ場はトランプで見る役一覧と「どっちが強い？」クイズ。 */
+:root{
+  --bg:#f5f2f2; --surface:#ffffff; --ink:#1d1517; --mute:#675b5e; --line:#e7dfe0;
+  --red:#e3121f; --red-ink:#c40f1b; --on-red:#ffffff; --soft:#fdeced;
+  --pc:#ffffff; --pc-ink:#1d1517; --pc-red:#d3101c; --pc-line:#d9cfd1;
+  --ok:#0b7a43; --ok-bg:#e3f5ea;
+  --f-head:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Noto Sans JP",sans-serif;
+  --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Noto Sans JP",sans-serif;
+  --shadow:0 2px 0 rgba(29,21,23,.06),0 10px 26px rgba(29,21,23,.07);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#130e0f; --surface:#1f1719; --ink:#f7f2f2; --mute:#b9abae; --line:#372a2d;
+  --red:#e3121f; --red-ink:#ff6570; --soft:#33161a; --ok:#6fdca0; --ok-bg:#123222;
+  --shadow:0 2px 0 rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#130e0f; --surface:#1f1719; --ink:#f7f2f2; --mute:#b9abae; --line:#372a2d;
+  --red:#e3121f; --red-ink:#ff6570; --soft:#33161a; --ok:#6fdca0; --ok-bg:#123222;
+  --shadow:0 2px 0 rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.35); color-scheme:dark}
+
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-weight:500;font-size:16px;line-height:1.8}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,.btn,.tag,.num{font-family:var(--f-head)}
+a{color:inherit}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--red-ink);outline-offset:3px}
+
+/* top bar */
+.top .wrap{padding-block:14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.brand img{width:44px;height:44px;border-radius:12px;display:block;flex:none}
+.brand b{font-family:var(--f-head);font-weight:900;font-size:20px;line-height:1.1;letter-spacing:.04em}
+.brand small{display:block;font-size:10px;font-weight:700;color:var(--mute);letter-spacing:.12em}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 30px;border-radius:999px;border:0;background:var(--red);color:var(--on-red);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;box-shadow:0 4px 0 var(--red-ink)}
+.btn.ghost{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.sm{min-height:44px;padding:0 20px;font-size:14px;box-shadow:none}
+.btn.off{background:transparent;color:var(--mute);box-shadow:inset 0 0 0 2px var(--line);cursor:default}
+.btn.white{background:#ffffff;color:#c40f1b;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+@media (prefers-reduced-motion:no-preference){
+  .btn{transition:transform .12s}.btn:not(.off):hover{transform:translateY(-2px)}.btn:not(.off):active{transform:translateY(2px)}
+  .feat,.pick{transition:transform .15s}.feat:hover{transform:translateY(-3px)}
+}
+
+/* panels */
+.panel{background:var(--surface);border-radius:28px;box-shadow:var(--shadow)}
+main{display:flex;flex-direction:column;gap:20px;padding-bottom:20px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:36px 22px 40px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.hero .suit{position:absolute;font-size:150px;line-height:1;color:var(--soft);pointer-events:none;user-select:none}
+.hero .s1{left:-22px;top:-30px;transform:rotate(-14deg)}
+.hero .s2{right:-18px;top:36px;transform:rotate(12deg)}
+.hero .s3{left:8%;bottom:-54px;transform:rotate(10deg)}
+.hero .s4{right:6%;bottom:-50px;transform:rotate(-10deg)}
+.hero>*:not(.suit){position:relative}
+.icon{width:132px;height:132px;border-radius:30px;display:block;box-shadow:0 6px 0 rgba(29,21,23,.14),0 16px 30px rgba(29,21,23,.18)}
+.tag{display:inline-block;background:var(--soft);color:var(--red-ink);font-weight:800;font-size:13px;border-radius:999px;padding:3px 14px;letter-spacing:.06em}
+h1{font-weight:900;font-size:clamp(30px,8.2vw,54px);line-height:1.3;letter-spacing:.01em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--red-ink)}
+.lead{color:var(--mute);max-width:32em;font-size:15.5px}
+.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* sections */
+.sec{padding:34px 22px 36px;display:flex;flex-direction:column;gap:18px}
+h2{font-weight:900;font-size:clamp(22px,5.6vw,30px);line-height:1.4;text-wrap:balance;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--red);flex:none}
+.sub{color:var(--mute);max-width:36em;font-size:15px}
+
+/* features */
+.feats{display:grid;grid-template-columns:1fr;gap:10px}
+.feat{display:grid;grid-template-columns:56px 1fr;gap:4px 14px;align-items:center;background:var(--bg);border-radius:20px;padding:16px;min-width:0}
+.ic{width:56px;height:56px;border-radius:50%;background:var(--red);color:var(--on-red);display:grid;place-items:center;grid-row:span 2}
+.ic.k{background:var(--ink);color:var(--surface)}
+.ic svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{font-weight:800;font-size:16.5px;line-height:1.45;align-self:end}
+.feat p{font-size:13.5px;line-height:1.65;color:var(--mute);align-self:start}
+@media (min-width:820px){
+  .feats{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .feat{grid-template-columns:1fr;justify-items:center;text-align:center;gap:10px;padding:22px 12px;align-content:start}
+  .ic{grid-row:auto}
+}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.trust div{border:2px solid var(--line);border-radius:20px;padding:18px;min-width:0}
+.trust b{font-family:var(--f-head);font-weight:800;font-size:17px;display:block;line-height:1.5}
+.trust p{font-size:14px;color:var(--mute);line-height:1.7;margin-top:4px}
+.trust .big{border-color:var(--red);background:var(--soft)}
+.trust .big b{color:var(--red-ink);font-size:20px}
+
+/* playing cards */
+.cards{display:flex;gap:5px}
+.pcard{width:42px;height:58px;border-radius:7px;background:var(--pc);color:var(--pc-ink);border:1.5px solid var(--pc-line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--f-head);font-weight:900;font-size:17px;line-height:1.05;flex:none}
+.pcard i{font-style:normal;font-size:17px}
+.pcard.r{color:var(--pc-red)}
+.pcard.dim{opacity:.38}
+
+/* quiz */
+.quiz{background:var(--bg);border-radius:24px;padding:20px 16px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.quiz h3{font-weight:900;font-size:19px}
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(264px,1fr));gap:10px;width:100%}
+.pick{background:var(--surface);border:3px solid var(--line);border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--f-head);font-weight:800;font-size:15px;color:var(--ink);cursor:pointer;min-width:0}
+.pick .nm{min-height:1.6em}
+.pick.right{border-color:var(--ok);background:var(--ok-bg)}
+.pick.wrong{border-color:var(--red-ink)}
+.pick:disabled{cursor:default;color:var(--ink)}
+.result{font-family:var(--f-head);font-weight:800;min-height:1.8em;text-align:center}
+.result.good{color:var(--ok)}.result.bad{color:var(--red-ink)}
+.score{font-size:13px;color:var(--mute);font-weight:700}
+
+/* ranking list */
+.ranks{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 20px}
+.ranks li{display:grid;grid-template-columns:34px 1fr;gap:2px 10px;align-items:center;padding:10px 0;border-bottom:2px dotted var(--line);min-width:0}
+.num{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--surface);display:grid;place-items:center;font-weight:900;font-size:15px;grid-row:span 2}
+.ranks li:first-child .num{background:var(--red);color:var(--on-red)}
+.ranks .nm{font-family:var(--f-head);font-weight:800;font-size:15.5px;line-height:1.4}
+.ranks .nm small{display:block;font-family:var(--f-body);font-weight:500;font-size:12.5px;color:var(--mute)}
+.ranks .cards{grid-column:2;margin-top:4px}
+
+/* app */
+.app{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:center}
+.coin{width:150px;height:150px;border-radius:50%;margin:0 auto;background:repeating-conic-gradient(#ffffff 0 15deg,var(--red) 15deg 45deg);display:grid;place-items:center;box-shadow:0 6px 0 rgba(29,21,23,.15)}
+.coin div{width:106px;height:106px;border-radius:50%;background:var(--red);border:3px dashed #ffffff;color:#ffffff;display:grid;place-content:center;text-align:center;font-family:var(--f-head);font-weight:900;font-size:34px;line-height:1}
+.coin small{display:block;font-size:10px;letter-spacing:.14em;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0}
+.chips li{font-family:var(--f-head);font-weight:800;font-size:12.5px;letter-spacing:.06em;border:2px solid var(--ink);border-radius:999px;padding:2px 12px}
+
+/* faq */
+details{border:2px solid var(--line);border-radius:18px;padding:0 18px}
+details+details{margin-top:10px}
+summary{cursor:pointer;list-style:none;font-family:var(--f-head);font-weight:800;padding:15px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"Q";color:var(--red-ink);font-weight:900;margin-right:2px;flex:none}
+summary span{flex:1}
+summary::after{content:"＋";color:var(--red-ink);font-weight:900;flex:none}
+details[open] summary::after{content:"－"}
+details p{padding:0 0 16px 1.4em;color:var(--mute);font-size:15px}
+
+/* join */
+.join{background:var(--red);color:#ffffff;border-radius:28px;padding:40px 22px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.join h2{color:#ffffff;justify-content:center}
+.join h2::before{display:none}
+.join p{font-size:15px}
+footer .wrap{padding-block:22px 30px;text-align:center;color:var(--mute);font-size:12px;font-weight:700;letter-spacing:.08em}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top-of-page">
+      <img src="logo.webp" alt="" width="44" height="44">
+      <span><b>SPL</b><small>SHUNAN POKER LEAGUE</small></span>
+    </a>
+    <a class="btn sm ig" id="ig-top" href="#join" hidden><span>Instagram</span></a>
+  </div>
+</header>
+
+<main class="wrap" id="top-of-page">
+
+  <section class="panel hero">
+    <span class="suit s1" aria-hidden="true">♠</span><span class="suit s2" aria-hidden="true">♥</span><span class="suit s3" aria-hidden="true">♦</span><span class="suit s4" aria-hidden="true">♣</span>
+    <img class="icon" src="logo.webp" alt="SPL SHUNAN POKER LEAGUE のロゴ" width="132" height="132">
+    <span class="tag">周南公立大学 ポーカーサークル</span>
+    <h1>読み合いの先に、<br><em>つながり</em>がある。</h1>
+    <p class="lead">SPL（SHUNAN POKER LEAGUE）は、テキサスホールデムを通じて、挑戦する楽しさと、人とつながる価値を広げるサークルです。</p>
+    <div class="row">
+      <a class="btn" href="#about"><span>SPLを知る</span></a>
+      <a class="btn ghost" href="#quiz"><span>役クイズであそぶ</span></a>
+    </div>
+  </section>
+
+  <section class="panel sec" id="about">
+    <h2>SPLってどんなサークル？</h2>
+    <div class="feats">
+      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.6"/><path d="M17.5 14.2c2.4.4 4 2.3 4 5.3"/></svg></span><h3>初心者も経験者も歓迎</h3><p>ルールを知らなくても大丈夫。経験者が隣で教えます。</p></div>
+      <div class="feat"><span class="ic k"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4"/><path d="M17 6h3a3 3 0 0 1-3 4"/><path d="M12 14v4"/><path d="M8 20h8"/></svg></span><h3>大会への出場を目指す</h3><p>学内外や他県の大会、公式大会にも挑戦します。</p></div>
+      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="12" r="5.5"/><circle cx="15.5" cy="12" r="5.5"/></svg></span><h3>他大学や地域と交流</h3><p>学校の外にも仲間が広がる場をつくります。</p></div>
+      <div class="feat"><span class="ic k"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 7.5l3 4 3-4"/><path d="M12 11.5v5"/><path d="M9.5 12.5h5"/><path d="M9.5 15h5"/><path d="M5.6 5.6l12.8 12.8"/></svg></span><h3>お金を賭けない</h3><p>金銭は一切賭けません。頭脳ゲームとして楽しみます。</p></div>
+      <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M8 14h2"/><path d="M14 14h2"/><path d="M8 17h2"/></svg></span><h3>独自の大会を開催</h3><p>SPL CUPをはじめ、SPLならではの大会を開きます。</p></div>
+    </div>
+  </section>
+
+  <section class="panel sec">
+    <h2>安心して参加できます</h2>
+    <div class="trust">
+      <div class="big"><b>SPLは、お金を賭けません。</b><p>チップは、ゲームの中だけで使う得点です。</p></div>
+      <div><b>はじめてでも大丈夫</b><p>ルールの説明から始めます。遊びながら覚えられます。</p></div>
+      <div><b>勝ち負けだけじゃない</b><p>参加や交流そのものを大切にします。</p></div>
+    </div>
+  </section>
+
+  <section class="panel sec" id="quiz">
+    <h2>どっちが強い？ 役クイズ</h2>
+    <p class="sub">テキサスホールデムは、手札2枚と場の5枚から、いちばん強い5枚の組み合わせを作るゲームです。強いと思うほうをタップしてください。</p>
+    <div class="quiz">
+      <div class="picks">
+        <button class="pick" id="pick-a" type="button"></button>
+        <button class="pick" id="pick-b" type="button"></button>
+      </div>
+      <p class="result" id="quiz-result" role="status" aria-live="polite"></p>
+      <button class="btn sm" id="quiz-next" type="button" hidden><span>次の問題</span></button>
+      <p class="score" id="quiz-score">連続正解 0</p>
+    </div>
+    <h3 style="font-family:var(--f-head);font-weight:900;font-size:18px;margin-top:8px">役の強さ一覧（上ほど強い）</h3>
+    <ol class="ranks" id="rank-list"></ol>
+    <p class="sub">うすく表示したカードは、役に関係しないカードです。</p>
+  </section>
+
+  <section class="panel sec">
+    <h2>SPL公式アプリを開発中</h2>
+    <div class="app">
+      <div class="coin" aria-hidden="true"><div>SP<small>SPL COIN</small></div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+        <p>イベントに参加するたびに、ポイント「SPL COIN」や称号がたまるアプリを準備しています。SPL COINは現金とは交換できません。</p>
+        <ul class="chips" aria-label="称号の例">
+          <li>FIRST STEP</li><li>REGULAR</li><li>VETERAN</li><li>CHALLENGER</li><li>COMMUNITY</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel sec">
+    <h2>よくある質問</h2>
+    <div>
+      <details><summary><span>ポーカーをやったことがありません。</span></summary><p>大歓迎です。ルールの説明から始めるので、何も知らない状態で来てください。</p></details>
+      <details><summary><span>お金はかかりますか？賭けますか？</span></summary><p>お金を賭けることは一切ありません。チップやポイントは得点として使い、現金とは交換できません。</p></details>
+      <details><summary><span>ほかの大学の学生や、学生以外でも参加できますか？</span></summary><p>SPLは、他大学や地域の方との交流を目指しています。参加できるイベントはInstagramでお知らせします。</p></details>
+      <details><summary><span>どうやって参加すればいいですか？</span></summary><p>Instagramの公式アカウントをフォローして、活動のお知らせを確認してください。</p></details>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <h2>さあ、はじめよう。SPLと。</h2>
+    <p>活動のお知らせはInstagramで発信します。<br><b>@spl_poker</b></p>
+    <a class="btn white ig" id="ig-join" href="#join"><span>Instagramをフォローする</span></a>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p>SPL — SHUNAN POKER LEAGUE</p><p>周南公立大学 ポーカーサークル</p></div></footer>
+
+<script>
+// Instagramの公式アカウントのURLをここに入れます（例: "https://www.instagram.com/アカウント名/"）
+var INSTAGRAM_URL = "https://www.instagram.com/spl_poker/";
+(function(){
+  var top = document.getElementById("ig-top"), join = document.getElementById("ig-join");
+  if (INSTAGRAM_URL){
+    [top, join].forEach(function(a){ a.href = INSTAGRAM_URL; a.target = "_blank"; a.rel = "noopener"; });
+    top.hidden = false;
+  } else {
+    join.removeAttribute("href"); join.className = "btn white";
+    join.style.opacity = ".75"; join.style.boxShadow = "none"; join.style.cursor = "default";
+    join.firstElementChild.textContent = "Instagram（リンク未設定）";
+  }
+})();
+
+// 役の一覧。強い順。「~」が付いたカードは役に関係しないカード。
+var HANDS = [
+  {n:"ロイヤルフラッシュ", d:"同じマークのA・K・Q・J・10", c:"A♠ K♠ Q♠ J♠ 10♠"},
+  {n:"ストレートフラッシュ", d:"同じマークで数字が5枚連続", c:"9♥ 8♥ 7♥ 6♥ 5♥"},
+  {n:"フォーカード", d:"同じ数字が4枚", c:"Q♠ Q♥ Q♦ Q♣ ~4♠"},
+  {n:"フルハウス", d:"同じ数字3枚と、同じ数字2枚", c:"J♠ J♥ J♣ 8♦ 8♠"},
+  {n:"フラッシュ", d:"同じマークが5枚", c:"A♦ J♦ 8♦ 6♦ 2♦"},
+  {n:"ストレート", d:"数字が5枚連続", c:"9♠ 8♦ 7♣ 6♥ 5♠"},
+  {n:"スリーカード", d:"同じ数字が3枚", c:"7♠ 7♥ 7♣ ~K♠ ~3♦"},
+  {n:"ツーペア", d:"ペアが2組", c:"K♠ K♦ 5♣ 5♥ ~9♠"},
+  {n:"ワンペア", d:"同じ数字が2枚", c:"A♠ A♥ ~9♣ ~6♦ ~3♠"},
+  {n:"ハイカード", d:"役なし。いちばん強い1枚で勝負", c:"A♠ ~J♦ ~8♣ ~6♥ ~2♠"}
+];
+function cardsHTML(str){
+  return '<span class="cards">' + str.split(" ").map(function(t){
+    var dim = t.charAt(0) === "~"; if (dim) t = t.slice(1);
+    var suit = t.slice(-1), rank = t.slice(0, -1), red = suit === "♥" || suit === "♦";
+    return '<span class="pcard' + (red ? " r" : "") + (dim ? " dim" : "") + '">' + rank + "<i>" + suit + "</i></span>";
+  }).join("") + "</span>";
+}
+document.getElementById("rank-list").innerHTML = HANDS.map(function(h, i){
+  return '<li><span class="num">' + (i + 1) + '</span><span class="nm">' + h.n + "<small>" + h.d + "</small></span>" + cardsHTML(h.c) + "</li>";
+}).join("");
+
+// クイズ
+var qa, qb, streak = 0, answered = false;
+var elA = document.getElementById("pick-a"), elB = document.getElementById("pick-b");
+var elR = document.getElementById("quiz-result"), elN = document.getElementById("quiz-next"), elS = document.getElementById("quiz-score");
+function plain(c){ return c.replace(/~/g, ""); }
+function newQuestion(){
+  qa = Math.floor(Math.random() * HANDS.length);
+  do { qb = Math.floor(Math.random() * HANDS.length); } while (qb === qa);
+  answered = false;
+  [[elA, qa], [elB, qb]].forEach(function(p){
+    p[0].className = "pick"; p[0].disabled = false;
+    p[0].innerHTML = cardsHTML(plain(HANDS[p[1]].c)) + '<span class="nm"></span>';
+  });
+  elR.textContent = ""; elR.className = "result"; elN.hidden = true;
+}
+function answer(picked){
+  if (answered) return; answered = true;
+  var win = Math.min(qa, qb), ok = picked === win;
+  [[elA, qa], [elB, qb]].forEach(function(p){
+    p[0].disabled = true;
+    p[0].querySelector(".nm").textContent = HANDS[p[1]].n;
+    if (p[1] === win) p[0].classList.add("right"); else if (p[1] === picked) p[0].classList.add("wrong");
+  });
+  streak = ok ? streak + 1 : 0;
+  var lose = Math.max(qa, qb);
+  elR.textContent = (ok ? "正解！ " : "ざんねん。") + HANDS[win].n + "は、" + HANDS[lose].n + "より強い役です。";
+  elR.className = "result " + (ok ? "good" : "bad");
+  elS.textContent = "連続正解 " + streak;
+  elN.hidden = false;
+}
+elA.addEventListener("click", function(){ answer(qa); });
+elB.addEventListener("click", function(){ answer(qb); });
+elN.addEventListener("click", newQuestion);
+newQuestion();
+</script>
+</body>
+</html>
